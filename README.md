@@ -1,16 +1,18 @@
 Navigate to server folder
 
+In db.js file, change uri
+
 npm init -y
     To create package.json
 npm i -g nodemon
-npm i express body-parser mongoose
+npm i express body-parser mongoose cors
 Set-ExecutionPolicy RemoteSigned -Scope CurrentUser
 nodemon index.js to run
 
 Navigate to Split
 
 npm install -g @angular/cli
-ng new my-angular-app
+ng new Client
 
 Navigate to client
 
