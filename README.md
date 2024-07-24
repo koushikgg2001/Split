@@ -1,4 +1,4 @@
-Navigate to server folder
+Navigate to server for mongodb 
 
 In db.js file, change uri
 
@@ -8,6 +8,11 @@ npm i -g nodemon
 npm i express body-parser mongoose cors
 Set-ExecutionPolicy RemoteSigned -Scope CurrentUser
 nodemon index.js to run
+
+Navigate to ServerPostgres for postgresql 
+npm init -y
+    To create package.json
+npm install express pg body-parser
 
 Navigate to Split
 
