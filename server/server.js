@@ -1,6 +1,6 @@
-const express = require('express');
-const dotenv = require('dotenv');
-const mongoose = require('mongoose');
+import express from 'express';
+import dotenv from 'dotenv';
+import mongoose from 'mongoose';
 
 // Load environment variables from .env file
 dotenv.config();
@@ -40,7 +40,7 @@ app.get('/', (req, res) => {
 });
 
 // Import and use your routes (e.g., user routes)
-const userRoutes = require('./routes/userRoutes');
+import userRoutes from './routes/userRoutes.js';
 app.use('/api/users', userRoutes);
 
 // Port setup and server listener
