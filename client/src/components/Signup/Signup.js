@@ -1,4 +1,6 @@
 import React, { useState } from "react";
+import "bootstrap/dist/css/bootstrap.min.css";
+import "./Signup.css";
 
 const Signup = () => {
   const [formData, setFormData] = useState({
@@ -27,7 +29,7 @@ const Signup = () => {
       const response = await fetch("http://localhost:5000/api/users/register", {
         method: "POST",
         headers: {
-          "Content-Type": "application/json", 
+          "Content-Type": "application/json",
         },
         body: JSON.stringify(formData),
       });
@@ -45,38 +47,48 @@ const Signup = () => {
   };
 
   return (
-    <div>
-      <h2>Signup</h2>
-      {successMessage && <p>{successMessage}</p>}
-      {errorMessage && <p>{errorMessage}</p>}
+    <div className="container">
+      <div className="icon">
+        <img src="./logo.png" alt="Icon" />
+      </div>
+      <h2>Create a free account</h2>
+      <p className="description">Provide your name, email, and choose a password.</p>
+      {successMessage && <p className="alert alert-success">{successMessage}</p>}
+      {errorMessage && <p className="alert alert-danger">{errorMessage}</p>}
       <form onSubmit={handleSubmit}>
         <div>
-          <label>Name</label>
+          <label htmlFor="name">Name*</label>
           <input
             type="text"
+            id="name"
             name="name"
             value={formData.name}
             onChange={handleChange}
+            placeholder="Enter your name"
             required
           />
         </div>
         <div>
-          <label>Email</label>
+          <label htmlFor="email">Email*</label>
           <input
             type="email"
+            id="email"
             name="email"
             value={formData.email}
             onChange={handleChange}
+            placeholder="Enter your email"
             required
           />
         </div>
         <div>
-          <label>Password</label>
+          <label htmlFor="password">Password*</label>
           <input
             type="password"
+            id="password"
             name="password"
             value={formData.password}
             onChange={handleChange}
+            placeholder="Choose a password"
             required
           />
         </div>
@@ -84,7 +96,6 @@ const Signup = () => {
       </form>
     </div>
   );
-  
 };
 
 export default Signup;
