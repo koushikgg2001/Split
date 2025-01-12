@@ -29,7 +29,7 @@ const registerUser = async (req, res) => {
     const checkResult = await User.findOne({ email: email });
 
     if (checkResult) {
-      return res.status(200).json({ message: "Email already exists. Please try logging in" });
+      return res.status(409).json({ message: "Email already exists. Please try logging in" });
     } 
       //hashing the password and saving it in the database
       bcrypt.hash(password, saltRounds, async (err, hash) => {
