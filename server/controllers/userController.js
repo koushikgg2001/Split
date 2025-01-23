@@ -7,23 +7,29 @@ const saltRounds = 10;
 //validation for email and passwords
 function validateEmail(email) {
   const emailPattern = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/;
-
   return emailPattern.test(email);
 }
 
+function validatePassword(password) {
+  // At least 8 characters, one uppercase, one lowercase, one number, one special character
+  const passwordPattern = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
+  return passwordPattern.test(password);
+}
 
 const registerUser = async (req, res) => {
   try {
     const email = req.body.email;
     const name = req.body.name;
     const password = req.body.password;
-    console.log(email, password, name);
+
     if (!name || !email || !password) {
       return res.status(400).json({ message: "All fields are required." });
     }
-
     if (!validateEmail(email)) {
       return res.status(400).json({ message: "not a valid email." });
+    }
+    if (!validatePassword(password)) {
+      return res.status(400).json({ message: "not a valid password." });
     }
 
     const checkResult = await User.findOne({ email: email });
@@ -82,4 +88,4 @@ const loginUser = async (req, res) => {
 
 }
 
-export default { getAllUsers, getUserById, registerUser, loginUser };
+export default {registerUser, loginUser };
