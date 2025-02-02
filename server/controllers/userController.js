@@ -36,23 +36,23 @@ const registerUser = async (req, res) => {
 
     if (checkResult) {
       return res.status(409).json({ message: "Email already exists. Please try logging in" });
-    } 
-      //hashing the password and saving it in the database
-      bcrypt.hash(password, saltRounds, async (err, hash) => {
-        if (err) {
-          console.error("Error hashing password:", err);
-        } else {
-          console.log("Hashed Password:", hash);
-          const id = await User.create({
-            name: name,
-            email: email,
-            password: hash
-          });
-          console.log(`id  -- ${id}`);
-          return res.status(200).json({ message: "Registered successfully." });
-        }
-      });
-    
+    }
+    //hashing the password and saving it in the database
+    bcrypt.hash(password, saltRounds, async (err, hash) => {
+      if (err) {
+        console.error("Error hashing password:", err);
+      } else {
+        console.log("Hashed Password:", hash);
+        const id = await User.create({
+          name: name,
+          email: email,
+          password: hash
+        });
+        console.log(`id  -- ${id}`);
+        return res.status(200).json({ message: "Registered successfully." });
+      }
+    });
+
   } catch (err) {
     console.log(err);
   }
@@ -62,7 +62,7 @@ const loginUser = async (req, res) => {
   try {
     const email = req.body.email;
     const loginPassword = req.body.password;
-    console.log(email, loginPassword);
+
     if (!email || !loginPassword) {
       return res.status(400).json({ message: "All fields are required." });
     }
@@ -72,14 +72,14 @@ const loginUser = async (req, res) => {
     }
     const user = await User.findOne({ email: email });
     if (!user) {
-      return res.status(400).json({ message: "Email not registered yet. Please reigster" });
+      return res.status(400).json({ message: "Email not registered yet. Please register" });
     }
 
     const validCred = await bcrypt.compare(loginPassword, user.password);
     if (!validCred) {
       return res.status(400).json({ message: "Wrong password" });
     }
-    
+
     return res.status(200).json({ message: "login successful" });
 
   } catch (err) {
@@ -88,4 +88,4 @@ const loginUser = async (req, res) => {
 
 }
 
-export default {registerUser, loginUser };
+export default { registerUser, loginUser };
