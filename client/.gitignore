@@ -22,6 +22,7 @@ npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 
+//Remove this when changes are made in these files
 src/index.css
 src/index.js
 src/logo.png

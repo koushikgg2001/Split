@@ -61,9 +61,9 @@ const registerUser = async (req, res) => {
 const loginUser = async (req, res) => {
   try {
     const email = req.body.email;
-    const loginPassword = req.body.password;
+    const password = req.body.password;
 
-    if (!email || !loginPassword) {
+    if (!email || !password) {
       return res.status(400).json({ message: "All fields are required." });
     }
 
@@ -75,7 +75,7 @@ const loginUser = async (req, res) => {
       return res.status(400).json({ message: "Email not registered yet. Please register" });
     }
 
-    const validCred = await bcrypt.compare(loginPassword, user.password);
+    const validCred = await bcrypt.compare(password, user.password);
     if (!validCred) {
       return res.status(400).json({ message: "Wrong password" });
     }
