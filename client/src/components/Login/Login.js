@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./Login.css";
 
@@ -7,6 +8,8 @@ const Login = () => {
     email: "",
     password: "",
   });
+
+  const navigate = useNavigate();
 
   const [successMessage, setSuccessMessage] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
@@ -36,7 +39,8 @@ const Login = () => {
       const data = await response.json();
       if (response.ok) {
         setSuccessMessage("Login successful!");
-        setFormData({ email: "", password: "" }); // Reset form
+        // setFormData({ email: "", password: "" }); // Reset form
+        navigate('/dashboard');
       } else {
         setErrorMessage(data.message || "Login failed. Please try again.");
       }
