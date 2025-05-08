@@ -11,8 +11,9 @@
   
   .logo {
     font-size: 4rem;
+    font-style:unset;
     font-weight: bold;
-    color: #6a1b9a;
+    color: #111010;
     margin-bottom: 0.5rem;
   }
   
