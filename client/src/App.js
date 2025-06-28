@@ -14,7 +14,8 @@ import Dashboard from './components/Dashboard/Dashboard';
 function App() {
   return (
     <div className="App">
-       <Routes>
+      <Router>
+        <Routes>
           <Route path="/" element={<HomePage />} />
           <Route path="/signup" element={<Signup />} />
           <Route path="/login" element={<Login />} />
@@ -22,8 +23,8 @@ function App() {
           <Route path="/account-details" element={<AccountDetails />} />
           <Route path="/create-group" element={<CreateGroup />} />
           <Route path="/contact-support" element={<ContactSupport />} />
-
         </Routes>
+      </Router>
     </div>
   );
 }
