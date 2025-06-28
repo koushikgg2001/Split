@@ -1,0 +1,41 @@
+.homepage-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    background: linear-gradient(135deg, #e0f7fa, #e1bee7);
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    text-align: center;
+  }
+  
+  .logo {
+    font-size: 4rem;
+    font-style:unset;
+    font-weight: bold;
+    color: #111010;
+    margin-bottom: 0.5rem;
+  }
+  
+  .tagline {
+    font-size: 1.2rem;
+    color: #555;
+    margin-bottom: 2rem;
+  }
+  
+  .button-group button {
+    background-color: #6a1b9a;
+    color: white;
+    border: none;
+    padding: 12px 24px;
+    margin: 0 10px;
+    font-size: 1rem;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .button-group button:hover {
+    background-color: #8e24aa;
+  }
+  

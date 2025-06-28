@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./Signup.css";
 
@@ -8,6 +9,8 @@ const Signup = () => {
     email: "",
     password: "",
   });
+
+  const navigate = useNavigate();
 
   const [successMessage, setSuccessMessage] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
@@ -37,7 +40,10 @@ const Signup = () => {
       const data = await response.json();
       if (response.ok) {
         setSuccessMessage("Signup successful!");
-        setFormData({ name: "", email: "", password: "" }); // Reset form
+        setTimeout(() => {
+          // navigate('/login'); // This navigates without reloading
+          navigate('/dashboard');
+        }, 1000);
       } else {
         setErrorMessage(data.message || "Signup failed. Please try again.");
       }
