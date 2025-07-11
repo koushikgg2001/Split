@@ -33,12 +33,24 @@ const Dashboard = () => {
     setFormData((prev) => ({ ...prev, [name]: value }));
   };
 
-  const handleSaveExpense = () => {
-    console.log('Saving expense to MongoDB:', formData);
-    // TODO: Replace with actual MongoDB integration
+const handleSaveExpense = async () => {
+  try {
+    const response = await fetch('http://localhost:5000/api/expenses', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(formData),
+    });
+
+    const result = await response.json();
+    console.log('Expense saved:', result);
+
     toggleModal();
     setFormData({ friendName: '', email: '', amount: '' });
-  };
+  } catch (error) {
+    console.error('Error saving expense:', error);
+  }
+};
+
 
   return (
     <div className="dashboard-layout">

@@ -14,3 +14,18 @@ Create .env and insert your mongodb uri
     MONGO_URI = <uri>
 
 nodemon server.js
+
+
+
+Folder structure
+
+SPLIT/
+├── Split/
+│   ├── client/         ← React Frontend
+│   │   └── src/
+│   │       └── ...
+│   ├── server/         ← Node.js + Express Backend
+│   │   ├── models/     ← Mongoose schemas (like Expense.js, User.js)
+│   │   ├── routes/     ← API routes (like expenseRoutes.js, userRoutes.js)
+│   │   ├── server.js   ← Main Express app
+│   │   └── .env        ← Environment variables (Mongo URI etc.)
