@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './Dashboard.css';
 
@@ -10,6 +11,8 @@ const Dashboard = () => {
     email: '',
     amount: '',
   });
+
+  const [expenses, setExpenses] = useState([]);
 
   const accountName = 'John Doe';
   const navigate = useNavigate();
@@ -51,6 +54,19 @@ const handleSaveExpense = async () => {
   }
 };
 
+  useEffect(() => {
+    const fetchExpenses = async () => {
+      try {
+        const response = await fetch('http://localhost:5000/api/expenses');
+        const data = await response.json();
+        setExpenses(data);
+      } catch (error) {
+        console.error('Failed to fetch expenses:', error);
+      }
+    };
+
+    fetchExpenses();
+  }, []);
 
   return (
     <div className="dashboard-layout">
@@ -62,28 +78,51 @@ const handleSaveExpense = async () => {
 
       {/* Center Main Dashboard */}
       <div className="main-dashboard">
-        <nav className="navbar">
-          <div className="logo">SPLITIFY</div>
-          <div className="account-section">
-            <button className="account-button" onClick={toggleDropdown}>
-              {accountName} ▼
-            </button>
-            {dropdownOpen && (
-              <div className="dropdown-menu show">
-                <div onClick={() => handleOptionClick('account')}>Account Details</div>
-                <div onClick={() => handleOptionClick('group')}>Create a Group</div>
-                <div onClick={() => handleOptionClick('support')}>Contact Support</div>
-                <div onClick={() => handleOptionClick('logout')}>Logout</div>
-              </div>
-            )}
+
+        <nav className="navbar fixed-top custom-navbar">
+          <div className="nav-section container-fluid d-flex justify-content-between align-items-center">
+            
+            {/* Logo and Brand */}
+            <a className="navbar-brand d-flex align-items-center logo-section" href="#">
+              <img src="logo.png" alt="Logo" className="logo-image me-2" />
+              Splitify
+            </a>
+
+            {/* Account Section - Aligned Right */}
+            <div className="account-section">
+              <button className="account-button" onClick={toggleDropdown}>
+                {accountName} ▼
+              </button>
+              {dropdownOpen && (
+                <div className="dropdown-menu show">
+                  <div onClick={() => handleOptionClick('account')}>Account Details</div>
+                  <div onClick={() => handleOptionClick('group')}>Create a Group</div>
+                  <div onClick={() => handleOptionClick('support')}>Contact Support</div>
+                  <div onClick={() => handleOptionClick('logout')}>Logout</div>
+                </div>
+              )}
+            </div>
+            
           </div>
         </nav>
-
+            
         <div className="dashboard-content">
           <h2>Welcome, {accountName}!</h2>
           <div className="button-row">
             <button onClick={toggleModal}>Add an Expense</button>
             <button>Settle Up</button>
+          </div>
+          <div className="expense-list">
+            <h3>All Expenses</h3>
+            {expenses.length === 0 ? (
+              <p>No expenses recorded yet.</p>
+            ) : (
+              expenses.map((expense, index) => (
+                <p key={index}>
+                  {expense.friendName} owes you INR {expense.amount}
+                </p>
+              ))
+            )}
           </div>
         </div>
       </div>
