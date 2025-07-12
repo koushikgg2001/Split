@@ -157,3 +157,30 @@
   font-weight: 500;
   margin: 10px 0;
 }
+
+.expense-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #ddf5ef;
+  margin: 8px 0;
+  padding: 10px 14px;
+  padding-left: 50px;
+  padding-right: 70px;
+  border-bottom: 0.5px solid rgb(184, 179, 179); 
+  border-radius: 6px;
+  position: relative;
+}
+
+.delete-button {
+  background: none;
+  border: none;
+  color: red;
+  font-size: 18px;
+  cursor: pointer;
+  display: none;
+}
+
+.expense-item:hover .delete-button {
+  display: inline;
+}

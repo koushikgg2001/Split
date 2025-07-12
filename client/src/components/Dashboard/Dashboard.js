@@ -54,6 +54,18 @@ const handleSaveExpense = async () => {
   }
 };
 
+const handleDelete = async (id) => {
+  try {
+    await fetch(`http://localhost:5000/api/expenses/${id}`, {
+      method: 'DELETE',
+    });
+
+    setExpenses((prev) => prev.filter((exp) => exp._id !== id));
+  } catch (err) {
+    console.error('Failed to delete expense:', err);
+  }
+};
+
   useEffect(() => {
     const fetchExpenses = async () => {
       try {
@@ -118,9 +130,15 @@ const handleSaveExpense = async () => {
               <p>No expenses recorded yet.</p>
             ) : (
               expenses.map((expense, index) => (
-                <p key={index}>
-                  {expense.friendName} owes you INR {expense.amount}
-                </p>
+                <div className="expense-item" key={index}>
+                  <span>{expense.friendName} owes you INR {expense.amount}</span>
+                  <button
+                    className="delete-button"
+                    onClick={() => handleDelete(expense._id)}
+                  >
+                    ✕
+                  </button>
+                </div>
               ))
             )}
           </div>
