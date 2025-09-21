@@ -1,6 +1,8 @@
 import React from 'react';
 import './App.css';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+// import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+
+import { Routes, Route } from 'react-router-dom';
 
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Signup from './components/Signup/Signup';
@@ -15,7 +17,7 @@ import Dashboard from './components/Dashboard/Dashboard';
 function App() {
   return (
     <div className="App">
-      <Router>
+      {/* <Router> */}
         <Routes>
           <Route path="/" element={<HomePage />} />
           <Route path="/signup" element={<Signup />} />
@@ -25,7 +27,7 @@ function App() {
           <Route path="/create-group" element={<CreateGroup />} />
           <Route path="/contact-support" element={<ContactSupport />} />
         </Routes>
-      </Router>
+      {/* </Router> */}
     </div>
   );
 }
