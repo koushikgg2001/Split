@@ -96,7 +96,7 @@ const handleDelete = async (id) => {
             
             {/* Logo and Brand */}
             <a className="navbar-brand d-flex align-items-center logo-section" href="#">
-              <img src="logo.png" alt="Logo" className="logo-image me-2" />
+              <img src="/logo.png" alt="Logo" className="logo-image me-2" />
               Splitify
             </a>
 
